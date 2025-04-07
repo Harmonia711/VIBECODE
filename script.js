@@ -18,6 +18,24 @@ let sunPoints = 150;
 let gameFrame = 0;
 let gameOver = false;
 
+// Load images for plants, zombies, and sun
+const plantImages = {
+    shooter: new Image(),
+    sunflower: new Image(),
+  };
+  
+  const zombieImages = {
+    normal: new Image(),
+  };
+  
+  const sunImage = new Image();
+  
+  // Set image sources (replace with actual image paths)
+  plantImages.shooter.src = "./assets/peashooter.png";
+  plantImages.sunflower.src = "./assets/sunflower.png";
+  zombieImages.normal.src = "./assets/zombie.png";
+  sunImage.src = "path/to/sun.png";
+  
 const shooterCost = 100;
 const sunflowerCost = 50;
 
@@ -50,8 +68,8 @@ class Plant {
   }
 
   draw() {
-    ctx.fillStyle = colors[this.type];
-    ctx.fillRect(this.x + 10, this.y + 10, this.width - 20, this.height - 20);
+    const image = plantImages[this.type]; // Get the correct image based on plant type
+    ctx.drawImage(image, this.x + 10, this.y + 10, this.width - 20, this.height - 20);
   }
 
   update() {
@@ -86,8 +104,7 @@ class Zombie {
   }
 
   draw() {
-    ctx.fillStyle = colors.zombie;
-    ctx.fillRect(this.x + 5, this.y + 5, this.width - 10, this.height - 10);
+    ctx.drawImage(zombieImages.normal, this.x + 5, this.y + 5, this.width - 10, this.height - 10);
   }
 
   update() {
